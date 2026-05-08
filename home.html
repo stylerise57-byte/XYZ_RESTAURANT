@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Restaurant Menu</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    color:#222;
+
+    background:#f5f4ef
+    url("https://www.transparenttextures.com/patterns/rice-paper-2.png");
+
+    background-repeat:repeat;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+    width:100%;
+    padding:24px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:white;
+}
+
+.logo{
+    font-size:40px;
+    color:#69a94f;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#111;
+    font-weight:400;
+}
+
+.nav-links{
+    list-style:none;
+    display:flex;
+    gap:40px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#555;
+    font-size:15px;
+}
+
+.reserve-btn{
+    background:black;
+    color:white;
+    border:none;
+    padding:14px 28px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:bold;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    width:100%;
+    padding:120px 10%;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:60px;
+    margin-bottom:20px;
+    color:#222;
+}
+
+.hero p{
+    max-width:700px;
+    margin:auto;
+    font-size:18px;
+    line-height:1.8;
+    color:#555;
+}
+
+/* ================= MENU SECTION ================= */
+
+.menu-section{
+    padding:50px 8%;
+}
+
+.search-box{
+    margin-bottom:40px;
+}
+
+.search-box input{
+    width:100%;
+    padding:16px 20px;
+    border:1px solid #9fd28c;
+    border-radius:8px;
+    background:white;
+    outline:none;
+    font-size:15px;
+}
+
+.menu-layout{
+    display:flex;
+    gap:40px;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    width:260px;
+}
+
+.sidebar h2{
+    margin-bottom:20px;
+    font-size:34px;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar li{
+    margin-bottom:14px;
+    color:#333;
+    cursor:pointer;
+    font-size:18px;
+}
+
+/* ================= MENU CONTENT ================= */
+
+.menu-content{
+    flex:1;
+}
+
+.menu-heading{
+    font-size:42px;
+    margin-bottom:40px;
+    color:#222;
+}
+
+.menu-item{
+    display:flex;
+    gap:25px;
+    padding:35px 0;
+    border-bottom:1px solid #d9e7d2;
+}
+
+.menu-item img{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.menu-details h3{
+    font-size:34px;
+    color:#6ba94f;
+    margin-bottom:10px;
+}
+
+.menu-details p{
+    font-size:20px;
+    color:#555;
+    margin-bottom:12px;
+}
+
+.price{
+    font-size:22px;
+    font-weight:bold;
+}
+
+/* ================= POPUP ================= */
+
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.45);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+.popup-content{
+    width:90%;
+    max-width:450px;
+    background:white;
+    padding:35px;
+    border-radius:12px;
+}
+
+.popup-content h2{
+    margin-bottom:25px;
+    text-align:center;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group input{
+    width:100%;
+    padding:14px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+    outline:none;
+}
+
+.form-buttons{
+    display:flex;
+    gap:15px;
+    margin-top:25px;
+}
+
+.submit-btn,
+.close-btn{
+    flex:1;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:bold;
+}
+
+.submit-btn{
+    background:#6ba94f;
+    color:white;
+}
+
+.close-btn{
+    background:#ddd;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+    .menu-layout{
+        flex-direction:column;
+    }
+
+    .sidebar{
+        width:100%;
+    }
+
+    .hero h1{
+        font-size:42px;
+    }
+
+    .nav-links{
+        display:none;
+    }
+}
+.map-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  background-color: white;
+  padding: 10px 14px;
+  border-radius: 50px;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  text-decoration: none;
+  color: #333;
+  font-family: Arial, sans-serif;
+
+  transition: 0.3s ease;
+  z-index: 1000;
+}
+
+.map-btn img {
+  width: 22px;
+  height: 22px;
+}
+
+.map-btn:hover {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+</style>
+</head>
+
+<body>
+<a href="https://www.google.com/maps" target="_blank" class="map-btn" id="mapBtn">
+  <img src="google_maps.webp" alt="Google Maps Logo">
+  <span>View on Maps</span>
+</a>
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        XYZ <span>menu</span>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="#">HOME</a></li>
+    </ul>
+
+    <button class="reserve-btn" id="openPopup">
+        Reserve Now
+    </button>
+
+</nav>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <h1>Premium Dining Experience</h1>
+
+    <p>
+        Enjoy handcrafted dishes, rich flavors,
+        and a peaceful atmosphere designed for
+        unforgettable dining moments.
+    </p>
+
+</section>
+
+<!-- ================= MENU SECTION ================= -->
+
+<section class="menu-section">
+    <div class="menu-layout">
+
+
+        <!-- MENU CONTENT -->
+
+        <div class="menu-content">
+
+  <!-- ================= MENU SECTION ================= -->
+
+<section class="menu-section">
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search Menu"
+        >
+    </div>
+
+    <div class="menu-layout">
+
+        <!-- ================= SIDEBAR ================= -->
+
+        <aside class="sidebar">
+
+            <!-- APPETISER -->
+
+            <h2>Appetiser</h2>
+
+            <ul>
+
+                <li class="category-btn active" data-category="all">
+                    All Items
+                </li>
+
+                <li class="category-btn" data-category="soup">
+                    Soup
+                </li>
+
+                <li class="category-btn" data-category="salad">
+                    Salad
+                </li>
+
+                <li class="category-btn" data-category="veg-snacks">
+                    Veg Snacks
+                </li>
+
+                <li class="category-btn" data-category="buff-snacks">
+                    Buff Snacks
+                </li>
+
+                <li class="category-btn" data-category="chicken-snacks">
+                    Chicken Snacks
+                </li>
+
+                <li class="category-btn" data-category="prawn-snacks">
+                    Prawn Snacks
+                </li>
+
+                <li class="category-btn" data-category="fish-snacks">
+                    Fish Snacks
+                </li>
+
+                <li class="category-btn" data-category="sekuwa">
+                    Sekuwa
+                </li>
+
+            </ul>
+
+            <!-- MAIN COURSE -->
+
+            <h2 class="main-course-title">
+                Main Course
+            </h2>
+
+            <ul>
+
+                <li class="category-btn" data-category="pizza">
+                    Pizza
+                </li>
+
+                <li class="category-btn" data-category="pasta">
+                    Pasta
+                </li>
+
+                <li class="category-btn" data-category="burger">
+                    Burger
+                </li>
+
+                <li class="category-btn" data-category="momo">
+                    Mo:Mo
+                </li>
+
+                <li class="category-btn" data-category="rice">
+                    Rice
+                </li>
+
+                <li class="category-btn" data-category="dessert">
+                    Dessert
+                </li>
+
+            </ul>
+
+        </aside>
+
+        <!-- ================= MENU CONTENT ================= -->
+
+        <div class="menu-content" id="menuContent">
+
+            <!-- SOUP -->
+
+            <div class="menu-item" data-category="soup">
+
+                <img src="https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=1200&auto=format&fit=crop">
+
+                <div class="menu-details">
+
+                    <h3>TRISARA SPECIAL SOUP</h3>
+
+                    <p>
+                        Chicken & Egg Drop Soup
+                    </p>
+
+                    <div class="price">
+                        Non-Veg - Rs. 475
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="menu-item" data-category="soup">
+
+                <img src="https://images.unsplash.com/photo-1608500218808-6e445a709b39?q=80&w=1200&auto=format&fit=crop">
+
+                <div class="menu-details">
+
+                    <h3>MUSHROOM SOUP</h3>
+
+                    <p>
+                        Thick Broth Creamy Mushroom Soup
+                    </p>
+
+                    <div class="price">
+                        Veg - Rs. 375
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- SALAD -->
+
+            <div class="menu-item" data-category="salad">
+
+                <img src="https://images.unsplash.com/photo-1546793665-c74683f339c1?q=80&w=1200&auto=format&fit=crop">
+
+                <div class="menu-details">
+
+                    <h3>GREEK SALAD</h3>
+
+                    <p>
+                        Fresh Vegetables with Olive Dressing
+                    </p>
+
+                    <div class="price">
+                        Rs. 420
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- VEG SNACKS -->
+
+            <div class="menu-item" data-category="veg-snacks">
+
+                <img src="https://images.unsplash.com/photo-1516684732162-798a0062be99?q=80&w=1200&auto=format&fit=crop">
+
+                <div class="menu-details">
+
+                    <h3>VEG SPRING ROLL</h3>
+
+                    <p>
+                        Crispy Fried Vegetable Rolls
+                    </p>
+
+                    <div class="price">
+                        Rs. 390
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- BUFF SNACKS -->
+
+            <div class="menu-item" data-category="buff-snacks">
+
+                <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200&auto=format&fit=crop">
+
+                <div class="menu-details">
+
+                    <h3>BUFF BURGER</h3>
+
+                    <p>
+                        Juicy Buff Patty with Cheese
+                    </p>
+
+                    <div class="price">
+                        Rs. 620
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CHICKEN -->
+
+            <div class="menu-item" data-category="chicken-snacks">
+
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200&auto=format&fit=crop">
+
+                <div class="menu-details">
+
+                    <h3>CHICKEN CHILLI</h3>
+
+                    <p>
+                        Crispy Chicken Tossed in Spicy Sauce
+                    </p>
+
+                    <div class="price">
+                        Rs. 650
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- PRAWN -->
+
+            <div class="menu-item" data-category="prawn-snacks">
+
+                <img src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?q=80&w=1200&auto=format&fit=crop">
+
+                <div class="menu-details">
+
+                    <h3>GARLIC PRAWN</h3>
+
+                    <p>
+                        Butter Garlic Fried Prawns
+                    </p>
+
+                    <div class="price">
+                        Rs. 820
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- FISH -->
+
+            <div class="menu-item" data-category="fish-snacks">
+
+                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format&fit=crop">
+
+                <div class="menu-details">
+
+                    <h3>GRILLED FISH</h3>
+
+                    <p>
+                        Fresh Fish with Lemon Butter Sauce
+                    </p>
+
+                    <div class="price">
+                        Rs. 980
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- SEKUWA -->
+
+            <div class="menu-item" data-category="sekuwa">
+
+                <img src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?q=80&w=1200&auto=format&fit=crop">
+
+                <div class="menu-details">
+
+                    <h3>CHICKEN SEKUWA</h3>
+
+                    <p>
+                        Traditional Nepali Grilled Meat
+                    </p>
+
+                    <div class="price">
+                        Rs. 720
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- PIZZA -->
+
+            <div class="menu-item" data-category="pizza">
+
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1200&auto=format&fit=crop">
+
+                <div class="menu-details">
+
+                    <h3>PEPPERONI PIZZA</h3>
+
+                    <p>
+                        Loaded Cheese Pizza
+                    </p>
+
+                    <div class="price">
+                        Rs. 950
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- PASTA -->
+
+            <div class="menu-item" data-category="pasta">
+
+                <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?q=80&w=1200&auto=format&fit=crop">
+
+                <div class="menu-details">
+
+                    <h3>WHITE SAUCE PASTA</h3>
+
+                    <p>
+                        Creamy Alfredo Pasta
+                    </p>
+
+                    <div class="price">
+                        Rs. 680
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- BURGER -->
+
+            <div class="menu-item" data-category="burger">
+
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200&auto=format&fit=crop">
+
+                <div class="menu-details">
+
+                    <h3>DOUBLE CHEESE BURGER</h3>
+
+                    <p>
+                        Beef Burger with Fries
+                    </p>
+
+                    <div class="price">
+                        Rs. 780
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- MOMO -->
+
+            <div class="menu-item" data-category="momo">
+
+                <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=1200&auto=format&fit=crop">
+
+                <div class="menu-details">
+
+                    <h3>CHICKEN MOMO</h3>
+
+                    <p>
+                        Steamed Nepali Dumplings
+                    </p>
+
+                    <div class="price">
+                        Rs. 320
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- RICE -->
+
+            <div class="menu-item" data-category="rice">
+
+                <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?q=80&w=1200&auto=format&fit=crop">
+
+                <div class="menu-details">
+
+                    <h3>FRIED RICE</h3>
+
+                    <p>
+                        Chicken Fried Rice with Vegetables
+                    </p>
+
+                    <div class="price">
+                        Rs. 520
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- DESSERT -->
+
+            <div class="menu-item" data-category="dessert">
+
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1200&auto=format&fit=crop">
+
+                <div class="menu-details">
+
+                    <h3>CHOCOLATE LAVA CAKE</h3>
+
+                    <p>
+                        Warm Chocolate Cake
+                    </p>
+
+                    <div class="price">
+                        Rs. 390
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= CSS ================= -->
+
+<style>
+
+.menu-section{
+    padding:50px 8%;
+}
+
+.search-box{
+    margin-bottom:40px;
+}
+
+.search-box input{
+    width:100%;
+    padding:16px 20px;
+    border:1px solid #9fd28c;
+    border-radius:8px;
+    background:white;
+    outline:none;
+    font-size:15px;
+}
+
+.menu-layout{
+    display:flex;
+    gap:50px;
+}
+
+.sidebar{
+    width:280px;
+}
+
+.sidebar h2{
+    font-size:52px;
+    margin-bottom:25px;
+    font-weight:bold;
+}
+
+.main-course-title{
+    margin-top:50px;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar li{
+    margin-bottom:18px;
+    font-size:22px;
+    cursor:pointer;
+    color:#222;
+}
+
+.sidebar li.active{
+    color:#6baa4f;
+    font-weight:bold;
+}
+
+.menu-content{
+    flex:1;
+}
+
+.menu-item{
+    display:flex;
+    gap:25px;
+    padding:35px 0;
+    border-bottom:1px solid #dbe7d6;
+}
+
+.menu-item img{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.menu-details h3{
+    color:#6baa4f;
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.menu-details p{
+    font-size:20px;
+    color:#555;
+    margin-bottom:12px;
+}
+
+.price{
+    font-size:22px;
+    font-weight:bold;
+}
+
+@media(max-width:950px){
+
+    .menu-layout{
+        flex-direction:column;
+    }
+
+    .sidebar{
+        width:100%;
+    }
+
+    .sidebar h2{
+        font-size:38px;
+    }
+
+}
+
+</style>
+
+</section>
+
+<!-- ================= POPUP FORM ================= -->
+
+<div class="popup" id="popup">
+
+    <div class="popup-content">
+
+        <h2>Reserve Your Table</h2>
+
+        <div class="form-group">
+            <input type="text" placeholder="Your Name">
+        </div>
+
+        <div class="form-group">
+            <input type="number" placeholder="Reservation For How Many">
+        </div>
+
+        <div class="form-group">
+            <input type="tel" placeholder="Phone Number">
+        </div>
+
+        <div class="form-group">
+            <input type="date">
+        </div>
+
+        <div class="form-buttons">
+
+            <button class="submit-btn">
+                Reserve
+            </button>
+
+            <button class="close-btn" id="closePopup">
+                Close
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+
+/* ================= ELEMENTS ================= */
+
+const categoryButtons =
+document.querySelectorAll(".category-btn");
+
+const menuItems =
+document.querySelectorAll(".menu-item");
+
+const searchInput =
+document.getElementById("searchInput");
+
+const popup =
+document.getElementById("popup");
+
+/* ================= ACTIVE CATEGORY ================= */
+
+let activeCategory = "all";
+
+/* ================= CATEGORY FILTER ================= */
+
+categoryButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        /* REMOVE ACTIVE CLASS */
+
+        categoryButtons.forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        /* ADD ACTIVE CLASS */
+
+        button.classList.add("active");
+
+        /* SAVE CATEGORY */
+
+        activeCategory =
+        button.dataset.category;
+
+        /* FILTER ITEMS */
+
+        filterMenu();
+
+    });
+
+});
+
+/* ================= SEARCH ================= */
+
+searchInput.addEventListener("keyup", () => {
+
+    filterMenu();
+
+});
+
+/* ================= FILTER FUNCTION ================= */
+
+function filterMenu(){
+
+    const searchText =
+    searchInput.value.toLowerCase();
+
+    menuItems.forEach(item => {
+
+        const itemCategory =
+        item.dataset.category;
+
+        const itemText =
+        item.innerText.toLowerCase();
+
+        const matchesCategory =
+        activeCategory === "all" ||
+        itemCategory === activeCategory;
+
+        const matchesSearch =
+        itemText.includes(searchText);
+
+        if(matchesCategory && matchesSearch){
+
+            item.style.display = "flex";
+
+        }else{
+
+            item.style.display = "none";
+
+        }
+
+    });
+
+}
+
+/* ================= POPUP ================= */
+
+document.getElementById("openPopup").onclick = () => {
+
+    popup.style.display = "flex";
+
+}
+
+document.getElementById("closePopup").onclick = () => {
+
+    popup.style.display = "none";
+
+}
+
+/* CLOSE WHEN CLICK OUTSIDE */
+
+window.onclick = function(e){
+
+    if(e.target == popup){
+
+        popup.style.display = "none";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
