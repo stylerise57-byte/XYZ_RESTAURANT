@@ -7,6 +7,8 @@
 
 <style>
 
+/* ================= GLOBAL ================= */
+
 *{
     margin:0;
     padding:0;
@@ -14,30 +16,45 @@
     font-family:Arial, Helvetica, sans-serif;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     color:#222;
-
-    background:#f5f4ef
+    background:
+    #f5f4ef
     url("https://www.transparenttextures.com/patterns/rice-paper-2.png");
-
     background-repeat:repeat;
+    overflow-x:hidden;
+}
+
+img{
+    max-width:100%;
+    display:block;
 }
 
 /* ================= NAVBAR ================= */
 
 .navbar{
     width:100%;
-    padding:24px 8%;
+    padding:20px 7%;
     display:flex;
     justify-content:space-between;
     align-items:center;
     background:white;
+    position:sticky;
+    top:0;
+    z-index:999;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+    gap:20px;
 }
 
 .logo{
-    font-size:40px;
+    font-size:clamp(28px,4vw,42px);
     color:#69a94f;
     font-weight:bold;
+    white-space:nowrap;
 }
 
 .logo span{
@@ -48,44 +65,57 @@ body{
 .nav-links{
     list-style:none;
     display:flex;
-    gap:40px;
+    gap:30px;
+    align-items:center;
 }
 
 .nav-links a{
     text-decoration:none;
     color:#555;
     font-size:15px;
+    transition:0.3s;
+}
+
+.nav-links a:hover{
+    color:#69a94f;
 }
 
 .reserve-btn{
     background:black;
     color:white;
     border:none;
-    padding:14px 28px;
+    padding:14px 24px;
     border-radius:10px;
     cursor:pointer;
     font-size:15px;
     font-weight:bold;
+    transition:0.3s;
+    white-space:nowrap;
+}
+
+.reserve-btn:hover{
+    background:#69a94f;
 }
 
 /* ================= HERO ================= */
 
 .hero{
     width:100%;
-    padding:120px 10%;
+    padding:90px 7%;
     text-align:center;
 }
 
 .hero h1{
-    font-size:60px;
+    font-size:clamp(38px,7vw,70px);
     margin-bottom:20px;
     color:#222;
+    line-height:1.1;
 }
 
 .hero p{
-    max-width:700px;
+    max-width:750px;
     margin:auto;
-    font-size:18px;
+    font-size:clamp(16px,2vw,20px);
     line-height:1.8;
     color:#555;
 }
@@ -93,37 +123,50 @@ body{
 /* ================= MENU SECTION ================= */
 
 .menu-section{
-    padding:50px 8%;
+    padding:40px 7% 80px;
 }
 
+/* SEARCH */
+
 .search-box{
-    margin-bottom:40px;
+    margin-bottom:35px;
 }
 
 .search-box input{
     width:100%;
     padding:16px 20px;
     border:1px solid #9fd28c;
-    border-radius:8px;
+    border-radius:12px;
     background:white;
     outline:none;
     font-size:15px;
 }
 
+/* LAYOUT */
+
 .menu-layout{
     display:flex;
-    gap:40px;
+    gap:50px;
+    align-items:flex-start;
 }
 
 /* ================= SIDEBAR ================= */
 
 .sidebar{
-    width:260px;
+    width:280px;
+    flex-shrink:0;
+    position:sticky;
+    top:120px;
 }
 
 .sidebar h2{
+    font-size:clamp(30px,4vw,48px);
     margin-bottom:20px;
-    font-size:34px;
+    font-weight:bold;
+}
+
+.main-course-title{
+    margin-top:45px;
 }
 
 .sidebar ul{
@@ -131,29 +174,35 @@ body{
 }
 
 .sidebar li{
-    margin-bottom:14px;
-    color:#333;
+    margin-bottom:16px;
+    font-size:20px;
     cursor:pointer;
-    font-size:18px;
+    color:#222;
+    transition:0.3s;
+}
+
+.sidebar li:hover{
+    color:#69a94f;
+}
+
+.sidebar li.active{
+    color:#6baa4f;
+    font-weight:bold;
 }
 
 /* ================= MENU CONTENT ================= */
 
 .menu-content{
     flex:1;
-}
-
-.menu-heading{
-    font-size:42px;
-    margin-bottom:40px;
-    color:#222;
+    min-width:0;
 }
 
 .menu-item{
     display:flex;
     gap:25px;
-    padding:35px 0;
-    border-bottom:1px solid #d9e7d2;
+    padding:30px 0;
+    border-bottom:1px solid #dbe7d6;
+    align-items:center;
 }
 
 .menu-item img{
@@ -161,22 +210,29 @@ body{
     height:120px;
     border-radius:50%;
     object-fit:cover;
+    flex-shrink:0;
+}
+
+.menu-details{
+    flex:1;
 }
 
 .menu-details h3{
-    font-size:34px;
-    color:#6ba94f;
+    color:#6baa4f;
+    font-size:clamp(24px,3vw,34px);
     margin-bottom:10px;
+    line-height:1.2;
 }
 
 .menu-details p{
-    font-size:20px;
+    font-size:clamp(15px,2vw,20px);
     color:#555;
     margin-bottom:12px;
+    line-height:1.6;
 }
 
 .price{
-    font-size:22px;
+    font-size:clamp(18px,2vw,22px);
     font-weight:bold;
 }
 
@@ -193,19 +249,21 @@ body{
     justify-content:center;
     align-items:center;
     z-index:1000;
+    padding:20px;
 }
 
 .popup-content{
-    width:90%;
+    width:100%;
     max-width:450px;
     background:white;
     padding:35px;
-    border-radius:12px;
+    border-radius:18px;
 }
 
 .popup-content h2{
     margin-bottom:25px;
     text-align:center;
+    font-size:30px;
 }
 
 .form-group{
@@ -216,7 +274,7 @@ body{
     width:100%;
     padding:14px;
     border:1px solid #ccc;
-    border-radius:8px;
+    border-radius:10px;
     font-size:15px;
     outline:none;
 }
@@ -232,10 +290,11 @@ body{
     flex:1;
     padding:14px;
     border:none;
-    border-radius:8px;
+    border-radius:10px;
     cursor:pointer;
     font-size:15px;
     font-weight:bold;
+    transition:0.3s;
 }
 
 .submit-btn{
@@ -243,13 +302,47 @@ body{
     color:white;
 }
 
+.submit-btn:hover{
+    opacity:0.9;
+}
+
 .close-btn{
     background:#ddd;
 }
 
-/* ================= RESPONSIVE ================= */
+/* ================= MAP BUTTON ================= */
 
-@media(max-width:900px){
+.map-btn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background-color:white;
+    padding:12px 16px;
+    border-radius:50px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+    text-decoration:none;
+    color:#333;
+    transition:0.3s ease;
+    z-index:1000;
+    font-size:14px;
+}
+
+.map-btn img{
+    width:22px;
+    height:22px;
+}
+
+.map-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 16px rgba(0,0,0,0.3);
+}
+
+/* ================= TABLET ================= */
+
+@media(max-width:1000px){
 
     .menu-layout{
         flex-direction:column;
@@ -257,54 +350,126 @@ body{
 
     .sidebar{
         width:100%;
+        position:relative;
+        top:0;
     }
 
-    .hero h1{
-        font-size:42px;
+    .sidebar ul{
+        display:flex;
+        flex-wrap:wrap;
+        gap:12px;
     }
+
+    .sidebar li{
+        margin-bottom:0;
+        background:white;
+        padding:10px 16px;
+        border-radius:50px;
+        border:1px solid #dfe8da;
+        font-size:16px;
+    }
+
+    .main-course-title{
+        margin-top:35px;
+    }
+
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:768px){
+
+    .navbar{
+        flex-wrap:wrap;
+        justify-content:center;
+        text-align:center;
+        padding:18px 5%;
+    }
+
+    .nav-links{
+        width:100%;
+        justify-content:center;
+        gap:18px;
+    }
+
+    .hero{
+        padding:70px 5%;
+    }
+
+    .menu-section{
+        padding:35px 5% 70px;
+    }
+
+    .menu-item{
+        flex-direction:column;
+        align-items:flex-start;
+        text-align:left;
+    }
+
+    .menu-item img{
+        width:100px;
+        height:100px;
+    }
+
+    .popup-content{
+        padding:28px 22px;
+    }
+
+    .form-buttons{
+        flex-direction:column;
+    }
+
+    .map-btn{
+        bottom:15px;
+        right:15px;
+        padding:10px 14px;
+    }
+
+}
+
+/* ================= SMALL MOBILE ================= */
+
+@media(max-width:480px){
 
     .nav-links{
         display:none;
     }
-}
-.map-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
 
-  display: flex;
-  align-items: center;
-  gap: 8px;
+    .reserve-btn{
+        width:100%;
+    }
 
-  background-color: white;
-  padding: 10px 14px;
-  border-radius: 50px;
+    .sidebar ul{
+        gap:10px;
+    }
 
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  text-decoration: none;
-  color: #333;
-  font-family: Arial, sans-serif;
+    .sidebar li{
+        font-size:14px;
+        padding:9px 14px;
+    }
 
-  transition: 0.3s ease;
-  z-index: 1000;
-}
+    .menu-item{
+        padding:25px 0;
+    }
 
-.map-btn img {
-  width: 22px;
-  height: 22px;
+    .map-btn span{
+        display:none;
+    }
+
 }
 
-.map-btn:hover {
-  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
-}
 </style>
 </head>
 
 <body>
-<a href="https://www.google.com/maps" target="_blank" class="map-btn" id="mapBtn">
-  <img src="google_maps.webp" alt="Google Maps Logo">
-  <span>View on Maps</span>
+
+<!-- ================= MAP BUTTON ================= -->
+
+<a href="https://www.google.com/maps" target="_blank" class="map-btn">
+    <img src="google_maps.webp" alt="Google Maps Logo">
+    <span>View on Maps</span>
 </a>
+
 <!-- ================= NAVBAR ================= -->
 
 <nav class="navbar">
@@ -340,16 +505,6 @@ body{
 <!-- ================= MENU SECTION ================= -->
 
 <section class="menu-section">
-    <div class="menu-layout">
-
-
-        <!-- MENU CONTENT -->
-
-        <div class="menu-content">
-
-  <!-- ================= MENU SECTION ================= -->
-
-<section class="menu-section">
 
     <!-- SEARCH -->
 
@@ -366,8 +521,6 @@ body{
         <!-- ================= SIDEBAR ================= -->
 
         <aside class="sidebar">
-
-            <!-- APPETISER -->
 
             <h2>Appetiser</h2>
 
@@ -410,8 +563,6 @@ body{
                 </li>
 
             </ul>
-
-            <!-- MAIN COURSE -->
 
             <h2 class="main-course-title">
                 Main Course
@@ -461,9 +612,7 @@ body{
 
                     <h3>TRISARA SPECIAL SOUP</h3>
 
-                    <p>
-                        Chicken & Egg Drop Soup
-                    </p>
+                    <p>Chicken & Egg Drop Soup</p>
 
                     <div class="price">
                         Non-Veg - Rs. 475
@@ -481,9 +630,7 @@ body{
 
                     <h3>MUSHROOM SOUP</h3>
 
-                    <p>
-                        Thick Broth Creamy Mushroom Soup
-                    </p>
+                    <p>Thick Broth Creamy Mushroom Soup</p>
 
                     <div class="price">
                         Veg - Rs. 375
@@ -503,9 +650,7 @@ body{
 
                     <h3>GREEK SALAD</h3>
 
-                    <p>
-                        Fresh Vegetables with Olive Dressing
-                    </p>
+                    <p>Fresh Vegetables with Olive Dressing</p>
 
                     <div class="price">
                         Rs. 420
@@ -525,9 +670,7 @@ body{
 
                     <h3>VEG SPRING ROLL</h3>
 
-                    <p>
-                        Crispy Fried Vegetable Rolls
-                    </p>
+                    <p>Crispy Fried Vegetable Rolls</p>
 
                     <div class="price">
                         Rs. 390
@@ -537,7 +680,7 @@ body{
 
             </div>
 
-            <!-- BUFF SNACKS -->
+            <!-- BUFF -->
 
             <div class="menu-item" data-category="buff-snacks">
 
@@ -547,9 +690,7 @@ body{
 
                     <h3>BUFF BURGER</h3>
 
-                    <p>
-                        Juicy Buff Patty with Cheese
-                    </p>
+                    <p>Juicy Buff Patty with Cheese</p>
 
                     <div class="price">
                         Rs. 620
@@ -569,9 +710,7 @@ body{
 
                     <h3>CHICKEN CHILLI</h3>
 
-                    <p>
-                        Crispy Chicken Tossed in Spicy Sauce
-                    </p>
+                    <p>Crispy Chicken Tossed in Spicy Sauce</p>
 
                     <div class="price">
                         Rs. 650
@@ -591,9 +730,7 @@ body{
 
                     <h3>GARLIC PRAWN</h3>
 
-                    <p>
-                        Butter Garlic Fried Prawns
-                    </p>
+                    <p>Butter Garlic Fried Prawns</p>
 
                     <div class="price">
                         Rs. 820
@@ -613,9 +750,7 @@ body{
 
                     <h3>GRILLED FISH</h3>
 
-                    <p>
-                        Fresh Fish with Lemon Butter Sauce
-                    </p>
+                    <p>Fresh Fish with Lemon Butter Sauce</p>
 
                     <div class="price">
                         Rs. 980
@@ -635,9 +770,7 @@ body{
 
                     <h3>CHICKEN SEKUWA</h3>
 
-                    <p>
-                        Traditional Nepali Grilled Meat
-                    </p>
+                    <p>Traditional Nepali Grilled Meat</p>
 
                     <div class="price">
                         Rs. 720
@@ -657,9 +790,7 @@ body{
 
                     <h3>PEPPERONI PIZZA</h3>
 
-                    <p>
-                        Loaded Cheese Pizza
-                    </p>
+                    <p>Loaded Cheese Pizza</p>
 
                     <div class="price">
                         Rs. 950
@@ -679,9 +810,7 @@ body{
 
                     <h3>WHITE SAUCE PASTA</h3>
 
-                    <p>
-                        Creamy Alfredo Pasta
-                    </p>
+                    <p>Creamy Alfredo Pasta</p>
 
                     <div class="price">
                         Rs. 680
@@ -701,9 +830,7 @@ body{
 
                     <h3>DOUBLE CHEESE BURGER</h3>
 
-                    <p>
-                        Beef Burger with Fries
-                    </p>
+                    <p>Beef Burger with Fries</p>
 
                     <div class="price">
                         Rs. 780
@@ -723,9 +850,7 @@ body{
 
                     <h3>CHICKEN MOMO</h3>
 
-                    <p>
-                        Steamed Nepali Dumplings
-                    </p>
+                    <p>Steamed Nepali Dumplings</p>
 
                     <div class="price">
                         Rs. 320
@@ -745,9 +870,7 @@ body{
 
                     <h3>FRIED RICE</h3>
 
-                    <p>
-                        Chicken Fried Rice with Vegetables
-                    </p>
+                    <p>Chicken Fried Rice with Vegetables</p>
 
                     <div class="price">
                         Rs. 520
@@ -767,9 +890,7 @@ body{
 
                     <h3>CHOCOLATE LAVA CAKE</h3>
 
-                    <p>
-                        Warm Chocolate Cake
-                    </p>
+                    <p>Warm Chocolate Cake</p>
 
                     <div class="price">
                         Rs. 390
@@ -785,119 +906,7 @@ body{
 
 </section>
 
-<!-- ================= CSS ================= -->
-
-<style>
-
-.menu-section{
-    padding:50px 8%;
-}
-
-.search-box{
-    margin-bottom:40px;
-}
-
-.search-box input{
-    width:100%;
-    padding:16px 20px;
-    border:1px solid #9fd28c;
-    border-radius:8px;
-    background:white;
-    outline:none;
-    font-size:15px;
-}
-
-.menu-layout{
-    display:flex;
-    gap:50px;
-}
-
-.sidebar{
-    width:280px;
-}
-
-.sidebar h2{
-    font-size:52px;
-    margin-bottom:25px;
-    font-weight:bold;
-}
-
-.main-course-title{
-    margin-top:50px;
-}
-
-.sidebar ul{
-    list-style:none;
-}
-
-.sidebar li{
-    margin-bottom:18px;
-    font-size:22px;
-    cursor:pointer;
-    color:#222;
-}
-
-.sidebar li.active{
-    color:#6baa4f;
-    font-weight:bold;
-}
-
-.menu-content{
-    flex:1;
-}
-
-.menu-item{
-    display:flex;
-    gap:25px;
-    padding:35px 0;
-    border-bottom:1px solid #dbe7d6;
-}
-
-.menu-item img{
-    width:120px;
-    height:120px;
-    border-radius:50%;
-    object-fit:cover;
-}
-
-.menu-details h3{
-    color:#6baa4f;
-    font-size:34px;
-    margin-bottom:10px;
-}
-
-.menu-details p{
-    font-size:20px;
-    color:#555;
-    margin-bottom:12px;
-}
-
-.price{
-    font-size:22px;
-    font-weight:bold;
-}
-
-@media(max-width:950px){
-
-    .menu-layout{
-        flex-direction:column;
-    }
-
-    .sidebar{
-        width:100%;
-    }
-
-    .sidebar h2{
-        font-size:38px;
-    }
-
-}
-
-</style>
-
-</section>
-
-<!-- ================= POPUP FORM ================= -->
+<!-- ================= POPUP ================= -->
 
 <div class="popup" id="popup">
 
@@ -938,6 +947,7 @@ body{
 </div>
 
 <!-- ================= JAVASCRIPT ================= -->
+
 <script>
 
 /* ================= ELEMENTS ================= */
@@ -964,22 +974,14 @@ categoryButtons.forEach(button => {
 
     button.addEventListener("click", () => {
 
-        /* REMOVE ACTIVE CLASS */
-
         categoryButtons.forEach(btn => {
             btn.classList.remove("active");
         });
 
-        /* ADD ACTIVE CLASS */
-
         button.classList.add("active");
-
-        /* SAVE CATEGORY */
 
         activeCategory =
         button.dataset.category;
-
-        /* FILTER ITEMS */
 
         filterMenu();
 
@@ -1045,7 +1047,7 @@ document.getElementById("closePopup").onclick = () => {
 
 }
 
-/* CLOSE WHEN CLICK OUTSIDE */
+/* ================= CLOSE WHEN CLICK OUTSIDE ================= */
 
 window.onclick = function(e){
 
